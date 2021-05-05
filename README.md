@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+Curso Profesional de React Hooks - Platzi
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Por ahora creamos una app con React con npx create-react-app y luego creamos las carpetas de src y dentro: components y context.
 
-## Available Scripts
+En components tenemos el header donde hay un boton que cambia a darkmode o lightmode cada vez que le das click.
 
-In the project directory, you can run:
+En el componente de Characters tenemos la peticion a la API y hacemos el map por cada respeusta y renderizamos el nombre y la imagen del personaje.
 
-### `npm start`
+Los Hooks que hemos visto hasta ahora son: useState => crea un estado dentro de arreglos por ejemplo [theme, setTheme] que lo extrae de = useState() y recibe como parametro el estado por default.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Tambien vimos useContext => para usarlo creamos una carpeta "context" y dentro el archivo ThemContext.js , envia informacion o estados de un componente a otro. Para usarlo, necesitamos crear una variable ThemeContext y es igual a React.createContext(null) y la exportamos default.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Luego importamos ThemeContext y lo usamos como una etiqueta para encapsular al componente que le queremos enviar informacion. </ThemeContext.Provide> y este lleva un propiedad 'value' donde ponemos lo que queremos enviar.
 
-### `npm test`
+En este caso:
+<ThemeContext.Provider value={{ theme, setTheme }}>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Acá estamos enviando el estado de useState que creamos:
 
-### `npm run build`
+const [theme, setTheme] = useState("lightmode");
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+De esta manera en Header.jsx podemos usar el estado creado en App.js destructurando el estado de App.js de la siguiente manera:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const { theme, setTheme } = useContext(ThemeContext);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Y podemos cambiar el background-color con la funcion handleClick() manejando el estado de App.js gracias a useContext(ThemeContext):
 
-### `npm run eject`
+const handleClick = () => {
+setDarkMode(!darkMode);
+theme === "lightmode" ? setTheme("darkmode") : setTheme("lightmode");
+};
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Nota: useContext se usa con la etiqueta HTML y con la propiedad useContext en el componente que quiere usar los datos compartidos => useContext(ThemeContext);
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

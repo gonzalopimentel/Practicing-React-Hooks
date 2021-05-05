@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+}
+.Characters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Character-card {
+  border: 1px solid red;
+  border-radius: 15px;
+  margin: 15px 15px 15px 0;
+}
+
+img {
+  border-radius: 15px;
+}
+
+.button {
+  background-color: rgb(5, 5, 51);
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.toogle-button {
+  background-color: coral;
+  color: aqua;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+
+.lightmode {
+  background-color: beige;
+}
+
+.darkmode {
+  background-color: midnightblue;
+  color: white;
+}
+
+h4 {
+  color: yellow;
+}
+
+.input_search {
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  outline: none;
+}
